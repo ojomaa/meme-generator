@@ -2,7 +2,7 @@ import React from 'react'
 import memesData from "../memesData"
 
 
-function Form() {
+function Meme() {
     const id = Math.floor(Math.random(memesData.data.memes) * memesData.data.memes.length)
     const dataImage = memesData.data.memes[id].url
 
@@ -38,4 +38,4 @@ function Form() {
     )
 }
 
-export default Form
+export default Meme
