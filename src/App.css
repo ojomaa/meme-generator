@@ -6,6 +6,7 @@ body {
   margin: 0;
   font-family: "Karla", sans-serif;
 }
+
 .Header {
   display: flex;
   align-items: center;
@@ -54,9 +55,14 @@ main {
 .form-button {
   grid-column: 1 / -1;
   border-radius: 7px;
-  border: 0;
+  border: none;
   background: linear-gradient(to right,#fdb500, #f8db1d);
   color: white;
   font-weight: bold;
   font-size: 20px;
+}
+
+.meme-image {
+  max-width: 100%;
+  padding-top: 5%;
 }
