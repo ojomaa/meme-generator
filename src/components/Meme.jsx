@@ -22,18 +22,33 @@ function Meme() {
         setMeme(prevState => {
             return {
                 ...prevState,
-                randomImage: memesArray[randomMeme].url
+                randomImage: memesArray[randomMeme].url,
             }
         })
+    }
+
+    console.log(meme.topText, meme.bottomText)
+    
+    // Add a handler function to change the values of topText and bottomText
+    function formHandle(event) {
+        const {name, value} = event.target
+        setMeme(prevState => ({
+            ...prevState,
+            [name]: value
+        }))
     }
     return (
         <main>
             <div className='Form'>
-                <input className='form-input' type='text' placeholder='Line 1'/>
-                <input className='form-input' type='text' placeholder='Line 2'/>
+                <input className='form-input' type='text' placeholder='Line 1' onChange={formHandle} value={meme.topText} name ='topText'/>
+                <input className='form-input' type='text' placeholder='Line 2' onChange={formHandle} value={meme.bottomText} name='bottomText'/>
                 <button className='form-button' onClick={getMemeImage}> Generate Meme </button>
             </div>
-            <img className='meme-image' src={meme.randomImage} />
+            <div className="meme">
+                <img src={meme.randomImage} className="meme-image" />
+                <h2 className="meme-text top">{meme.topText}</h2>
+                <h2 className="meme-text bottom">{meme.bottomText}</h2>
+            </div>
         </main>
     )
 }
