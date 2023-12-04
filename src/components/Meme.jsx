@@ -3,21 +3,27 @@ import memesData from "../memesData"
 
 
 function Meme() {
-    const id = Math.floor(Math.random(memesData.data.memes) * memesData.data.memes.length)
-    const dataImage = memesData.data.memes[id].url
 
-    // Create state for the meme image
+    // Create state for the meme
     const [meme, setMeme] = React.useState({
         topText: '',
         bottomText: '',
         randomImage: ''
     });
 
-    const [allMemeImages, setAllMemeImages] = React.useState(memesData)
+    // State for the API images
+    const [allMemes, setAllMemes] = React.useState([])
 
-    // Create function that would return a random image from the memesData.js
+    // Fetch the images from API
+    React.useEffect(() => {
+        fetch("https://api.imgflip.com/get_memes")
+        .then(res => res.json())
+        .then(data => setAllMemes(data))
+    }, [])
+
+    // Create function that would return a random image from the API
     function getMemeImage() {
-        const memesArray = allMemeImages.data.memes
+        const memesArray = allMemes.data.memes
         const randomMeme = Math.floor(Math.random() * memesArray.length)
         setMeme(prevState => {
             return {
@@ -27,7 +33,6 @@ function Meme() {
         })
     }
 
-    console.log(meme.topText, meme.bottomText)
     
     // Add a handler function to change the values of topText and bottomText
     function formHandle(event) {
@@ -37,6 +42,7 @@ function Meme() {
             [name]: value
         }))
     }
+    
     return (
         <main>
             <div className='Form'>
